@@ -134,8 +134,9 @@ You can obtain PowerInfer GGUF weights at `*.powerinfer.gguf` as well as profile
 We recommend using [`huggingface-cli`](https://huggingface.co/docs/huggingface_hub/guides/cli) to download the whole model repo. For example, the following command will download [PowerInfer/ReluLLaMA-7B-PowerInfer-GGUF](https://huggingface.co/PowerInfer/ReluLLaMA-7B-PowerInfer-GGUF) into the `./ReluLLaMA-7B` directory.
 
 ```shell
-huggingface-cli download --resume-download --local-dir ReluLLaMA-7B --local-dir-use-symlinks False PowerInfer/ReluLLaMA-7B-PowerInfer-GGUF
-```
+huggingface-cli download --resume-download --local-dir /home/v-liuwenxuan/hf-models/prosparse-llama-2-13b-predictor --local-dir-use-symlinks False SparseLLM/prosparse-llama-2-13b-predictor
+huggingface-cli download --resume-download --local-dir /home/v-liuwenxuan/code/ProSparseLlama/13B --local-dir-use-symlinks False SparseLLM/prosparse-llama-2-13b
+```prosparse-llama-2-7b-predictor
 
 As such, PowerInfer can automatically make use of the following directory structure for feature-complete model offloading:
 ```
@@ -175,6 +176,7 @@ For the same reason, we suggest keeping the same directory structure as PowerInf
 For CPU-only and CPU-GPU hybrid inference with all available VRAM, you can use the following instructions to run PowerInfer:
 ```bash
 ./build/bin/main -m /PATH/TO/MODEL -n $output_token_count -t $thread_num -p $prompt
+./build/bin/main -m ./ProSparseLlama-7B/prosparse-llama-2-7b.gguf -n 128 -t 8 -p "Once upon a time"
 # e.g.: ./build/bin/main -m ./ReluFalcon-40B-PowerInfer-GGUF/falcon-40b-relu.q4.powerinfer.gguf -n 128 -t 8 -p "Once upon a time"
 # For Windows: .\build\bin\Release\main.exe -m .\ReluFalcon-40B-PowerInfer-GGUF\falcon-40b-relu.q4.powerinfer.gguf -n 128 -t 8 -p "Once upon a time"
 ```
